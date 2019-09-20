@@ -68,7 +68,7 @@
 	git checkout dev
 	git stash list                    #查看stash的内容
 	git stash pop					  #恢复的同时删除stash的内容
-20、复制一个特定的提交
+20、复制一个特定的提交到当前分支
 	git cherry-pick 4c805			  #把4c805的提交复制到当前的分支中
 21、
 	
