@@ -1,0 +1,77 @@
+1、创建版本库
+    mkdir test         #创建文件夹
+    cd test
+    pwd                #查看当前文件路径
+2、初始化版本库
+	git init
+3、在版本库中编辑自己的文件：readme.txt
+4、把文件添加到git仓库
+	git add readme.txt
+5、把文件提交到仓库
+	git commit -m "write the readme"
+6、查看文件改动情况
+	git status                      #查看工作区状态
+	git diff readme.txt             #查看修改的内容
+	gitk							#查看详细修改内容
+7、版本回退
+	git log							#查看提交历史，以及commit id
+	git log --graph                 #查看简易提交历史
+	git reset --hard head^			#回退到上一版本
+									(当前版本为head，上上版本为head^^)
+8、指定版本回退
+	git reset --hard 1094a			#(1094a是要复原的commit id，
+									  可以看之前的git log记录)	
+9、关闭窗口之后的指定版本回退
+	git reflog						#查看命令历史，历史的所有commit id
+10、丢弃工作区(未git add)的更改
+	git checkout -- readme.txt
+11、丢弃暂存区(已经git add)的更改
+	git reset head readme.txt
+	git checkout -- readme.txt
+12、远程仓库(设置好github的相关配置的前提下)
+	在github上新建库，复制github给的git链接
+	本地git remote add origin +链接
+	git push -u origin master       #推送本地git库至远程库
+13、git remote add origin添加远程库地址错误时
+	git remote rm origin 
+	git remote add origin +新链接
+14、从远程仓库克隆到本地
+	git clone +链接
+15、删除缓存区中的文件
+	git rm --cached "文件路径"，不删除物理文件，仅将该文件从缓存中删除
+	git rm --f "文件路径"，不仅将该文件从缓存中删除，还会将物理文件删除
+16、创建合并分支
+	git checkout -b dev              #创建并切换到分支dev
+	
+	git add readme.txt
+	git commit -m "dev add readme"   #提交修改到dev分支
+	git checkout master			     
+	git merge dev				     #把dev分支合入到master
+	git branch -d dev				 #删除dev分支
+17、解决冲突
+	当分支和master在同一处都有改动，且改动不同时。在master中合入时，会提示冲突，
+	只有解决冲突才能进行merge合入。
+18、禁用fast forward对分支进行merge
+	git checkout -b dev
+	git add readme.txt
+	git commit -m "add feature12"
+	git checkout master
+	git merge --no-ff -m "merge without no-ff" dev
+19、修改bug，另起炉灶
+	git stash 						  #保存当前分支进度
+	git checkout master			
+	git checkout -b issue-101         #在master中新建分支issue-101修改bug
+	git add readme.txt 
+	git commit -m "bug fixed"
+	git checkout master
+	git merge --no-ff -m "merge bug fixed" issue-101
+	git checkout dev
+	git stash list                    #查看stash的内容
+	git stash pop					  #恢复的同时删除stash的内容
+20、复制一个特定的提交
+	git cherry-pick 4c805			  #把4c805的提交复制到当前的分支中
+21、
+	
+	
+ 
+	
